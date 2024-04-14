@@ -2,7 +2,7 @@ name: Validations
 
 on:
   pull_request:
-    branches: [master, main, development]
+    branches: [master, main, develop]
 
 permissions:
   contents: read
