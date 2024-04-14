@@ -2,7 +2,7 @@ name: Validations
 
 on:
   pull_request:
-    branches: [master, main, develop]
+    branches: [master, main, development]
 
 permissions:
   contents: read
@@ -26,18 +26,18 @@ jobs:
       - name: Run Format Validations
         uses: pre-commit/action@v3.0.0
       - name: Run Unit Tests
-        run: cd TP4 && ceedling clobber gcov:all utils:gcov
+        run: ceedling clobber gcov:all utils:gcov
       - name: Test Report
         uses: dorny/test-reporter@v1
         if: success() || failure()
         with:
           name: Ceedling Unit Tests
-          path: TP4/build/artifacts/gcov/report.xml
+          path: build/artifacts/gcov/report.xml
           reporter: jest-junit
       - name: Code Coverage Report
         uses: irongut/CodeCoverageSummary@v1.3.0
         with:
-          filename: TP4/build/artifacts/gcov/GcovCoverageCobertura.xml
+          filename: build/artifacts/gcov/GcovCoverageCobertura.xml
           badge: true
           format: markdown
           hide_branch_rate: false
